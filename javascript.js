@@ -3,6 +3,12 @@ let container = document.getElementById('grid');
 let gridSize = document.getElementById('grid-size');
 gridSize.addEventListener('click', changeGridSize);
 
+let clear = document.getElementById('clear');
+clear.addEventListener('click', clearGrid);
+
+let divId;
+let color;
+
 for (let i = 0; i < 256; i++) {
     let div = document.createElement('div');
     div.classList.add('squares');
@@ -16,8 +22,8 @@ squares.forEach(div => {
 });
 
 function changeBackground() {
-        let divId = this.id;
-        let color = document.getElementById(divId);
+        divId = this.id;
+        color = document.getElementById(divId);
         color.style.backgroundColor = 'black';
 }
 
@@ -48,4 +54,10 @@ function changeGridSize() {
             div.addEventListener('mouseenter', changeBackground);
         });    
     }
+}
+
+function clearGrid() {
+    squares.forEach(div => {
+        div.style.backgroundColor = '';
+    });
 }
