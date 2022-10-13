@@ -3,6 +3,9 @@ let container = document.getElementById('grid');
 let gridSize = document.getElementById('grid-size');
 gridSize.addEventListener('click', changeGridSize);
 
+let rainbow = document.getElementById('rainbow');
+rainbow.addEventListener('click', changeToRainbow);
+
 let clear = document.getElementById('clear');
 clear.addEventListener('click', clearGrid);
 
@@ -31,7 +34,7 @@ function changeGridSize() {
     let gridInput = prompt('Choose your grid size:');
     
     if (gridInput > 64 || gridInput < 2) {
-        alert('Not a valid number.')
+        alert('Not a valid number.');
     } else {
         while (container.firstChild) {
             container.removeChild(container.firstChild);
@@ -54,6 +57,20 @@ function changeGridSize() {
             div.addEventListener('mouseenter', changeBackground);
         });    
     }
+}
+
+function changeToRainbow() {
+    let coloredSquares = document.querySelectorAll('.squares');
+    coloredSquares.forEach(div => {
+        div.addEventListener('mouseenter', changeBackgroundRainbow);
+    });
+}
+
+function changeBackgroundRainbow() {
+    divId = this.id;
+    color = document.getElementById(divId);
+    let randomColor = Math.floor(Math.random()*16777215).toString(16);
+    color.style.backgroundColor = "#" + randomColor;
 }
 
 function clearGrid() {
